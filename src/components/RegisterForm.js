@@ -1,35 +1,3 @@
-// import React, { Component } from 'react'
-
-// import api from '../api'
-
-// export default class registerForm extends Component {
-
-//   async handleSubmit(e) {
-//     e.preventDefault()
-//     const username = e.target.elements.username.value
-//     const password = e.target.elements.password.value
-//     // FIXME: 사용자 이름 중복체크 해야함 
-//     const res = await api.post('users/register', {
-//       username,
-//       password
-//     })
-//     localStorage.setItem('token', res.data.token)
-//     // TODO: 게시글 목록 보여주기
-//   }
-
-//   render() {
-//     return (
-//       // e는 이벤트 객체가 필요할 때 사용한다.
-//       <form onSubmit={(e) => this.handleSubmit(e)}>
-//         <h1>회원 가입</h1>
-//         <input type="text" name="username" />
-//         <input type="password" name="password" />
-//         <button>가입</button>
-//       </form>
-//     )
-//   }
-// }
-
 import React, { Component } from 'react'
 import api from '../api'
 

@@ -5,6 +5,7 @@ import "./App.css";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import PostList from "./components/PostList";
+import PostDetail from "./components/PostDetail";
 
 // 로그인 폼에 회원가입 버튼 만들기
 // 회원가입 버튼 클릭하면 회원가입 폼 보여주기
@@ -15,8 +16,12 @@ class App extends Component {
     // page === 'login' -> 로그인 페이지
     // page === 'register' -> 회원가입 페이지
     // page === 'post-list' -> 게시물 목록 페이지
+    // page === 'post-detail' -> 게시물 세부 페이지
+
     this.state = {
-      page: "register"
+      page: "post-list",
+      // 현재 보고있는 게시물의 id
+      postId: null
     };
   }
 
@@ -26,6 +31,14 @@ class App extends Component {
     })
   }
 
+  handlePostDetailPage(postId) {
+    this.setState({
+      page: 'post-detail',
+      postId
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -34,7 +47,9 @@ class App extends Component {
         ) : this.state.page === 'register' ? (
           <RegisterForm />
         ) : this.state.page === 'post-list' ? (
-          <PostList />
+          <PostList onPostDetailPage={(postId) => this.handlePostDetailPage(postId)}/>
+        ): this.state.page === 'post-detail' ? (
+          <PostDetail postId={this.state.postId}/>
         ): null}
       </div>
     );
