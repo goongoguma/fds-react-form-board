@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+
 // 중복되기 때문에 render를 따로 빼내고 submit의 내용을 위에서 결정하게 만들었음
+// defaultValue에 다른 값을 또 넣어주지 않도록 주의
 export default class PostForm extends Component {
   render() {
     return ( 
