@@ -51,15 +51,15 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.page === 'login' ? (
-          <LoginForm onRegister={() => this.handleRegisterPage()}/>
+          <LoginForm onRegister={() => this.handleRegisterPage()} />
         ) : this.state.page === 'register' ? (
           <RegisterForm />
         ) : this.state.page === 'post-list' ? (
           <PostList onPostDetailPage={(postId) => this.handlePostDetailPage(postId)} onNewPostFormPage={() => this.handleNewPostFormPage()} />
         ): this.state.page === 'post-detail' ? (
-          <PostDetail postId={this.state.postId}/>
+          <PostDetail postId={this.state.postId} />
         ): this.state.page === 'new-post-form' ? (
-          <NewPostForm onPostDetailPage={(postId) => this.handlePostDetailPage(postId)}/>
+          <NewPostForm onPostDetailPage={(postId) => this.handlePostDetailPage(postId)} />
         ): null}
       </div>
     );
