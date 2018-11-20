@@ -71,7 +71,7 @@ class App extends Component {
         ): this.state.page === 'new-post-form' ? (
           <NewPostForm onPostDetailPage={(postId) => this.handlePostDetailPage(postId)} />
         ): this.state.page === 'edit-post-form' ? (
-          <EditPostForm postId={this.state.postId} />
+          <EditPostForm postId={this.state.postId} onPostDetailPage={postId => this.handlePostDetailPage(postId)}/>
         ): null}
       </div>
     );
