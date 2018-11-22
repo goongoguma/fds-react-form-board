@@ -12,7 +12,13 @@ export default class UserProvider extends Component {
     }
   }
   
-
+  // 재접속할시
+  async componentDidMount() {
+    if(localStorage.getItem('token')) {
+      await this.refrechUser()
+    }
+  }
+  
   async login(username, password) {
     const res = await api.post('/users/login',{
       username,
@@ -20,12 +26,17 @@ export default class UserProvider extends Component {
     })
     // if(res === 201)?
     localStorage.setItem('token', res.data.token)
+    await this.refrechUser()
+    // TODO : 게시글 목록 보여주기
+  }
+
+  // 재사용코드
+  async refrechUser() {
     const res2 = await api.get('/me')
     this.setState({
       id: res2.data.id,
       username: res2.data.username
     })
-    // TODO : 게시글 목록 보여주기
   }
 
   render() {
