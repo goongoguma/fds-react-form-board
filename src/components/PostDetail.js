@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import api from "../api";
 import Layout from "./Layout"
+import {UserConsumer} from '../contexts/UserContext'
 
 export default class PostDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
       body: null,
-      title: null
+      title: null,
+      userId: null
     }
   }
 
@@ -21,10 +23,11 @@ export default class PostDetail extends Component {
     // const res = await api.get(`/posts/${this.props.postId}`)
     // const title = res.data.title
     // const body = res.data.body
-    const {data: {title, body}} = await api.get(`/posts/${this.props.postId}`);
+    const {data: {title, body, userId}} = await api.get(`/posts/${this.props.postId}`);
     this.setState({
       title,
-      body
+      body,
+      userId
     })
   }
 
@@ -34,9 +37,15 @@ export default class PostDetail extends Component {
     return (
       <Layout title="게시물 내용">
         <h1>게시물</h1>
-        <button onClick = {() => onEditPostFormPage(postId)}>수정</button>
-        <div>{title}</div>
-        <div>{body}</div>
+        <UserConsumer>
+        {({id}) => {
+          if(this.state.userId === id) {
+            return  <button onClick = {() => onEditPostFormPage(postId)}>수정</button>
+          }
+        }}
+        </UserConsumer>
+       <div>{title}</div>
+       <div>{body}</div>
       </Layout>
     )
   }
