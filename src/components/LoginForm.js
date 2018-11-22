@@ -4,7 +4,6 @@ import api from '../api'
 export default class LoginForm extends React.Component{
   constructor(props) {
     super(props)
-  
     this.usernameRef = React.createRef()
     this.passwordRef = React.createRef()
   }
@@ -17,6 +16,7 @@ export default class LoginForm extends React.Component{
       username,
       password
     })
+    // if(res === 201)?
     localStorage.setItem('token', res.data.token)
     // TODO : 게시글 목록 보여주기
   }

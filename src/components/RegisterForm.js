@@ -20,7 +20,7 @@ export default class RegisterForm extends Component {
     // 사용자 이름 중복체크
     // api/users?username=fds => 뭔가 가져와지면 사용자가 있는것이고 안가져와지면 사용자가 없는것이다.
     const {data:users} = await api.get('/users', {
-      params:{
+      params:{ // 주소창에 https://secret-earthworm.glitch.me?username=?? 이라는 뜻
         username
       }
     })

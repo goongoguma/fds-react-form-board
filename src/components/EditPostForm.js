@@ -13,6 +13,9 @@ export default class EditPostForm extends Component {
   }
 
   async componentDidMount() {
+    // const res = await api.get(`/posts/${this.props.postId}`)
+    // const title = res.data.title
+    // const body = res.data.body
     const {data: {title, body}} = await api.get(`/posts/${this.props.postId}`)
     this.setState({
       title,
@@ -40,7 +43,8 @@ export default class EditPostForm extends Component {
       return 'loading...'
     }
     return (
-      <PostForm onSubmit={e => this.handleSubmit(e)} title={title} body={body} />
+      // <PostForm onSubmit={e => this.handleSubmit(e)}  title={title} body={body}/>
+      <PostForm onSubmit={e => this.handleSubmit(e)} />
     )
   }
 }

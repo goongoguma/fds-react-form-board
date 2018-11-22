@@ -3,6 +3,7 @@ import api from '../api';
 import PostForm from './PostForm'
 
 export default class NewPostForm extends Component {
+
   async handleSubmit(e) {
     e.preventDefault()
     const title = e.target.elements.title.value
@@ -11,7 +12,7 @@ export default class NewPostForm extends Component {
       title,
       body
     })
-    // TODO: 생성된 게시물 보여주기
+    // TODO: 생성된 게시물 보여주기 (NewPostForm -> App -> PostDetail)
     this.props.onPostDetailPage(res.data.id)
   }
 
