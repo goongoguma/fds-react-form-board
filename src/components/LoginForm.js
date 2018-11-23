@@ -1,41 +1,41 @@
 import React from 'react'
-import {UserConsumer} from '../contexts/UserContext'
+import {UserConsumer, withUser} from '../contexts/UserContext'
 
-export default class LoginForm extends React.Component{
+class LoginForm extends React.Component {
   constructor(props) {
     super(props)
+  
     this.usernameRef = React.createRef()
     this.passwordRef = React.createRef()
   }
   
-  render(){
-    const {onRegister} = this.props // 분해대입으로 속성을 꺼내와서 변수명 설정
-    return(
-      // 아무 의미 없는 내용으로 감싸는 법
-      //  1. <div></div>
-      //  2. <React.Fragment></React.Fragment>
-      //  3. <></> 
-      <UserConsumer>
+  handleSubmit(e) {
+    e.preventDefault()
+    const username = e.target.elements.username.value
+    const password = e.target.elements.password.value
+    this.props.login(username, password)
+  }
 
-      {({login}) => (
-        <React.Fragment>  
-          <form onSubmit={e => {
-            e.preventDefault()
-            const username = e.target.elements.username.value
-            const password = e.target.elements.password.value
-            login(username, password)
-          }}>
-            <h1>로그인h1</h1>
-            <input ref={this.usernameRef} type="text" name="username" />
-            <input ref={this.passwordRef} type="password" name="password" />
-            <button>로그인</button>
-          </form>
-          <button onClick={() => onRegister()}>회원가입</button>
-        </React.Fragment>
-      )}
-
-      </UserConsumer>
-      
+  render() {
+    const {onRegister} = this.props
+    return (
+      <React.Fragment>
+        <form onSubmit={e => this.handleSubmit(e)}>
+          <h1>로그인</h1>
+          <input ref={this.usernameRef} type="text" name="username" />
+          <input ref={this.passwordRef} type="password" name="password" />
+          <button>로그인</button>
+        </form>
+        <button onClick={() => onRegister()}>회원 가입</button>
+      </React.Fragment>
     )
   }
 }
+
+// export default props => {
+//   return <UserConsumer>
+//     {({login}) => <LoginForm {...props} login={login} />}
+//   </UserConsumer>
+// }
+
+export default withUser(LoginForm);
