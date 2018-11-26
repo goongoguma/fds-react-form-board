@@ -5,7 +5,7 @@ import "./App.css";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import PostList from "./components/PostList";
-import PostDetail from "./components/PostDetail";
+import PostDetail from "./containers/PostDetail";
 import NewPostForm from "./components/NewPostForm";
 import EditPostForm from "./components/EditPostForm";
 import {UserProvider} from "./contexts/UserContext";
@@ -24,7 +24,7 @@ class App extends Component {
     // page === 'edit-post-form' -> 글 수정 페이지
 
     this.state = {
-      page: "login",
+      page: "post-list",
       // 현재 보고있는 게시물의 id
       postId: null
     };

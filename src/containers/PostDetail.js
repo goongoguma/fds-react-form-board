@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
+import PostDetailView from '../components/PostDetailView'
 import api from "../api";
-import Layout from "./Layout"
-import {UserConsumer} from '../contexts/UserContext'
 
 export default class PostDetail extends Component {
   constructor(props) {
@@ -30,23 +29,17 @@ export default class PostDetail extends Component {
       userId
     })
   }
-
   render() {
-    const{postId, onEditPostFormPage} = this.props
-    const{title, body} = this.state
+    const {userId, title, body} = this.state
+    const {onEditPostFormPage, postId} = this.props
     return (
-      <Layout title="게시물 내용">
-        <h1>게시물</h1>
-        <UserConsumer>
-        {({id}) => {
-          if(this.state.userId === id) {
-            return  <button onClick = {() => onEditPostFormPage(postId)}>수정</button>
-          }
-        }}
-        </UserConsumer>
-       <div>{title}</div>
-       <div>{body}</div>
-      </Layout>
+      <PostDetailView 
+        userId={userId}
+        onEditPostFormPage={onEditPostFormPage}
+        postId={postId}
+        title={title}
+        body={body}
+      />
     )
   }
 }
