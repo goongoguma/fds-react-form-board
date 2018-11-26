@@ -43,8 +43,9 @@ export default class EditPostForm extends Component {
       return 'loading...'
     }
     return (
-      // <PostForm onSubmit={e => this.handleSubmit(e)}  title={title} body={body}/>
-      <PostForm onSubmit={e => this.handleSubmit(e)} />
+      <PostForm editing={true} onSubmit={e => this.handleSubmit(e)}  title={title} body={body} />
+      // <PostForm onSubmit={e => this.handleSubmit(e)} />
+      // editing은 스타일링을 위해 PostForm에 props로 내려준다. 
     )
   }
 }
