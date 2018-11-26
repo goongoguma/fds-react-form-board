@@ -24,7 +24,7 @@ class App extends Component {
     // page === 'edit-post-form' -> 글 수정 페이지
 
     this.state = {
-      page: "post-list",
+      page: "login",
       // 현재 보고있는 게시물의 id
       postId: null
     };
