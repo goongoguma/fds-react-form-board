@@ -8,7 +8,8 @@ export default class PostDetail extends Component {
     this.state = {
       body: null,
       title: null,
-      userId: null
+      userId: null,
+      loading: true
     }
   }
 
@@ -26,14 +27,16 @@ export default class PostDetail extends Component {
     this.setState({
       title,
       body,
-      userId
+      userId,
+      loading: false
     })
   }
   render() {
-    const {userId, title, body} = this.state
+    const {userId, title, body, loading} = this.state
     const {onEditPostFormPage, postId} = this.props
     return (
       <PostDetailView 
+        loading={loading}
         userId={userId}
         onEditPostFormPage={onEditPostFormPage}
         postId={postId}
