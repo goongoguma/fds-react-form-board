@@ -33,6 +33,7 @@ export default class PostDetail extends Component {
       loading: false,
     });
   }
+
   render() {
     const { userId, title, body, loading } = this.state;
     const { onEditPostFormPage, postId } = this.props;

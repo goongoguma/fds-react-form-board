@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import api from "../api";
+import React, { Component } from 'react';
+import api from '../api';
 import Layout from './Layout';
-import {UserConsumer} from '../contexts/UserContext';
+import { UserConsumer } from '../contexts/UserContext';
 import classNames from 'classnames';
-import './PostList.scss'
+import './PostList.scss';
 
 export default class PostList extends Component {
   constructor(props) {
@@ -11,29 +11,26 @@ export default class PostList extends Component {
 
     this.state = {
       posts: [],
-      loading: true
+      loading: true,
     };
   }
 
   async componentDidMount() {
-    const res = await api.get('/posts')
+    const res = await api.get('/posts');
     this.setState({
       posts: res.data,
-      loading: false
-    })
-    console.log(res.data)
+      loading: false,
+    });
+    console.log(res.data);
   }
 
   render() {
-    const {posts} = this.state
-    const {onPostDetailPage, onNewPostFormPage, onLoginFormPage} = this.props
-    const titleClass = classNames(
-      'PostList__title',
-      {
-        // this.setState에서 loading이 true면 실행이 된다.
-        'PostList__title--loading': this.state.loading
-      }
-    )
+    const { posts } = this.state;
+    const { onPostDetailPage, onNewPostFormPage, onLoginFormPage } = this.props;
+    const titleClass = classNames('PostList__title', {
+      // this.setState에서 loading이 true면 실행이 된다.
+      'PostList__title--loading': this.state.loading,
+    });
     return (
       <Layout title="게시물 목록" onLoginFormPage={onLoginFormPage}>
         <div className="PostList">
@@ -41,7 +38,13 @@ export default class PostList extends Component {
           <h1 className={titleClass}>게시물 목록</h1>
           <ul className="PostList__list">
             {posts.map(post => (
-            <li className="PostList__item" key={post.id} onClick={() => onPostDetailPage(post.id)}>{post.title}</li>
+              <li
+                className="PostList__item"
+                key={post.id}
+                onClick={() => onPostDetailPage(post.id)}
+              >
+                {post.title}
+              </li>
             ))}
           </ul>
         </div>
