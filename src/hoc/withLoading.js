@@ -2,10 +2,11 @@ import React from 'react'
 
 export default function withLoading(WrappedComponent) {
   return function WithLoading(props) {
-    if(props.loading) {
+    const {loading, ...rest} = props
+    if(loading) {
       return 'loading...'
     } else {
-      return <WrappedComponent {...props} />
+      return <WrappedComponent {...rest} />
     }
   }
 }
