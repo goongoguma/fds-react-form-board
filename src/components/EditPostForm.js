@@ -23,11 +23,8 @@ export default class EditPostForm extends Component {
     })
   }
 
-  async handleSubmit(e) {
-    e.preventDefault()
-    const title = e.target.elements.title.value
-    const body = e.target.elements.body.value
-    // App에 있는 EditPost에서 온것
+  async handleSubmit(title, body) {
+     // App에 있는 EditPost에서 온것
     await api.patch(`/posts/${this.props.postId}`, {
       title,
       body
@@ -43,7 +40,7 @@ export default class EditPostForm extends Component {
       return 'loading...'
     }
     return (
-      <PostForm editing={true} onSubmit={e => this.handleSubmit(e)}  title={title} body={body} />
+      <PostForm editing={true} onSubmit={(title, body) => this.handleSubmit(title, body)}  title={title} body={body} />
       // <PostForm onSubmit={e => this.handleSubmit(e)} />
       // editing은 스타일링을 위해 PostForm에 props로 내려준다. 
     )

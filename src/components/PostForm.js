@@ -8,9 +8,11 @@ export default class PostForm extends Component {
 
   static defaultProps = {
     // true가 주어지면, 편집 모드 스타일이 적용됨
-    editing: false
+    editing: false,
+    // form 전송시 호출되는 함수, title과 body를 인수로 받음
+    onSubmit: () => {}
   }
-  
+
   render() {
     const {editing} = this.props
     const titleClass = classNames(styles.titleInput, {
@@ -20,7 +22,11 @@ export default class PostForm extends Component {
     })
     return ( 
       <div>
-        <form onSubmit={e => this.props.onSubmit(e)}>
+        <form onSubmit={e => {
+          e.preventDefault() 
+          const title = e.target.elements.title.value
+          const body = e.target.elements.body.value
+          this.props.onSubmit(title, body)}}>
           <input className={titleClass} type="text" name="title" defaultValue={this.props.title}/>
           <textarea name="body" cols="30" rows="10" defaultValue={this.props.body}></textarea>
           <button>전송</button>
